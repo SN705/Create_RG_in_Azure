@@ -10,7 +10,7 @@
 
 //Define location and RG name
 param location string = 'canadacentral'
-param rgname string = 'Dino_Smiles_RG123'
+param rgname string = 'Dino_Smiles_RG456'
 
 //specify the subscription scope since the ARM template below implies resource group scope
 targetScope = 'subscription'
