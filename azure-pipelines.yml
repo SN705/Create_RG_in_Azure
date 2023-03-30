@@ -6,7 +6,7 @@ pool:
 
 steps:
 - task: DownloadSecureFile@1
-  name: 'Get ARM Template'
+  name: 'get-arm-template'
   inputs:
     secureFile: 'CreateResourceGroupARMTemplate'
   displayName: 'Download ARM Template'
@@ -21,4 +21,4 @@ steps:
       az deployment create \
         --name FirstDeployment \
         --location eastus \
-        --template-file $(Get ARM Template.secureFilePath)
+        --template-file $(get-arm-template.secureFilePath)
