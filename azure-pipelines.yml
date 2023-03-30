@@ -1,0 +1,24 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: DownloadSecureFile@1
+  name: 'Get ARM Template'
+  inputs:
+    secureFile: 'CreateResourceGroupARMTemplate'
+  displayName: 'Download ARM Template'
+
+- task: AzureCLI@2
+  displayName: 'Deploy ARM Template'
+  inputs:
+    azureSubscription: 'Azure Subscription Connection'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      az deployment create \
+        --name FirstDeployment \
+        --location eastus \
+        --template-file $(Get ARM Template.secureFilePath)
