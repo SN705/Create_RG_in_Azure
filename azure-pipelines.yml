@@ -9,13 +9,13 @@ steps:
   inputs:
     artifactName: 'CreateResourceGroupArtifact'
     path: $(System.ArtifactsDirectory)
-    displayName: 'Download Pipeline Artifact'
+    displayName: 'Download pipeline artifact'
 
 - task: DownloadSecureFile@1
-  name: 'Get ARM Template'
+  name: 'Download ARM Template'
   inputs:
     secureFile: 'CreateResourceGroupARMTemplate'
-  displayName: 'Download ARM Template'
+  displayName: 'Download secure file'
 
 - task: AzureCLI@2
   displayName: 'Deploy ARM Template'
