@@ -6,7 +6,7 @@ pool:
 
 steps:
 - task: DownloadSecureFile@1
-  name: 'get-arm-template'
+  name: 'get_arm_template'
   inputs:
     secureFile: 'CreateResourceGroupARMTemplate'
   displayName: 'Download ARM Template'
