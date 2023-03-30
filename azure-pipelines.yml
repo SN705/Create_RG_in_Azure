@@ -5,8 +5,14 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- task: DownloadPipelineArtifact@2
+  inputs:
+    artifactName: 'CreateResourceGroupArtifact'
+    path: $(System.ArtifactsDirectory)
+    displayName: 'Download Pipeline Artifact'
+
 - task: DownloadSecureFile@1
-  name: 'get_arm_template'
+  name: 'Get ARM Template'
   inputs:
     secureFile: 'CreateResourceGroupARMTemplate'
   displayName: 'Download ARM Template'
@@ -21,4 +27,4 @@ steps:
       az deployment create \
         --name FirstDeployment \
         --location eastus \
-        --template-file $(get-arm-template.secureFilePath)
+        --template-file $(System.ArtifactsDirectory)/CreateResourceGroupArtifact/CreateResourceGroupARMTemplate
