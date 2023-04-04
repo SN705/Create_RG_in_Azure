@@ -12,7 +12,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Login to Azure
-        uses: azure/login@v1
+        uses: azure/login@v1.6.0
         with:
           creds: ${{ secrets.AZURE_DINO_SMILES_CREDENTIALS }}
       - name: Build Bicep script
@@ -20,7 +20,7 @@ jobs:
         with:
           args: build ResourceGroup.bicep
       - name: Deploy to Azure subscription
-        uses: azure/cli@v1
+        uses: azure/cli@v2.27.2
         with:
           inlineScript: |
             az deployment sub create --name myDeployment --location centralcanada --template-file ResourceGroup.json
