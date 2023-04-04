@@ -16,7 +16,7 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_DINO_SMILES_CREDENTIALS }}
       - name: Build Bicep script
-        uses: azure/bicep@0.4.116
+        uses: azure/bicep@0.4.902
         with:
           args: build ResourceGroup.bicep
       - name: Deploy to Azure subscription
