@@ -21,7 +21,7 @@ jobs:
 
 
       - name: Create Resource Group
-        run: az deployment sub create --name RGAttempt1 --location eastus --template-file https://raw.githubusercontent.com/SN705/Create_RG_in_Azure/main/ResourceGroup.bicep
+        run: az deployment sub create --name RGAttempt1 --location eastus --template-file https://github.com/SN705/Create_RG_in_Azure/blob/c94cf47e715af6310c173e379b567c898b689b04/ResourceGroup
         env:
           AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
