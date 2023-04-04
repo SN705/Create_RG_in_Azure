@@ -1,0 +1,22 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- checkout: self
+
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'de0b680f-7a1f-47fa-9dce-af31ff636ad7'
+    scriptLocation: 'inlineScript'
+    scriptType: 'bash'
+    inlineScript: 'az login'
+
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'de0b680f-7a1f-47fa-9dce-af31ff636ad7'
+    scriptLocation: 'inlineScript'
+    scriptType: 'bicep'
+    inlineScript: 'az deployment sub create --name RGAttempt1 --location eastus --template-file https://raw.githubusercontent.com/SN705/Create_RG_in_Azure/main/ResourceGroup.bicep'
