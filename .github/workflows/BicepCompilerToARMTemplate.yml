@@ -1,0 +1,24 @@
+name: Bicep to ARM Template (JSON) Compiler
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  BICEP_FILE_NAME: "ResourceGroup"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Compile Bicep to ARM template (JSON)
+        run: |
+          az bicep build --file ${{ env.BICEP_FILE_NAME }}.bicep --outfile ${{ env.BICEP_FILE_NAME }}.json
+          if [ ! -f ${{ env.BICEP_FILE_NAME }}.json ]; then
+            echo "Failed to generate JSON file"
+            exit 1
+          fi
