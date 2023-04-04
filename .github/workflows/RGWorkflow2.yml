@@ -11,7 +11,7 @@ jobs:
       - uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_DINO_SMILES_CREDENTIALS }}
-      - uses: azure/bicep@v1
+      - uses: azure/bicep@v0.4.116
         with:
           args: build ResourceGroup.bicep
       - uses: azure/cli@v1
