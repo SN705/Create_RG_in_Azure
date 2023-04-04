@@ -11,16 +11,24 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
+      
+    - name: Install Azure CLI
+      uses: azure/CLI@v2
+      
     - name: Login to Azure
-      uses: azure/login@v1
-      env:
-        AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-        AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-        AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-        AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-      #with:
-      #  creds: ${{ secrets.AZURE_DINO_SMILES_CREDENTIALS }}
+      run: az login --service-principal --username ${{ secrets.AZURE_CLIENT_ID }} --password ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
+
+
+
+#    - name: Login to Azure
+#      uses: azure/login@v1
+#      env:
+#        AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+#        AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+#        AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+#        AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+#      with:
+#        creds: ${{ secrets.AZURE_DINO_SMILES_CREDENTIALS }}
 
     - name: Create Resource Group
       run: az deployment sub create --name RGAttempt1 --location eastus --template-file https://raw.githubusercontent.com/SN705/Create_RG_in_Azure/main/ResourceGroup.bicep
