@@ -9,7 +9,7 @@
       //Note that location is overridden by location parameter value in the script
 
 //Define location and RG name
-param location string = 'canadacentral'
+param location string = 'eastus'
 param rgname string = 'Dino_Smiles_RG456'
 
 //specify the subscription scope since the ARM template below implies resource group scope
