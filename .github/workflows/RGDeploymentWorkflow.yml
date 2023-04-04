@@ -13,8 +13,8 @@ jobs:
           creds: ${{ secrets.AZURE_DINO_SMILES_CREDENTIALS }}
       - uses: azure/bicep@v1
         with:
-          args: build ResourceGroup
+          args: build ResourceGroup.bicep
       - uses: azure/cli@v1
         with:
           inlineScript: |
-            az deployment sub create --name RGDeployment1 --location eastus --template-file ResourceGroup
+            az deployment sub create --name RGDeployment1 --location eastus --template-file ResourceGroup.bicep
