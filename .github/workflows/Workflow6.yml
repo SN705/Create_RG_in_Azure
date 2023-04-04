@@ -15,7 +15,7 @@ jobs:
     - name: Login to Azure
       uses: azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        creds: ${{ secrets.AZURE_DINO_SMILES_CREDENTIALS }}
 
     - name: Create Resource Group
       run: az deployment sub create --name RGAttempt1 --location eastus --template-file https://raw.githubusercontent.com/SN705/Create_RG_in_Azure/main/ResourceGroup.bicep
