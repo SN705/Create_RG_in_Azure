@@ -23,7 +23,7 @@ jobs:
             az account set --subscription ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       
       - name: Compile Bicep to ARM template (JSON)
-        run: az bicep build --file ${{ env.BICEP_FILE_NAME }}
+        run: az bicep build --file ${{ env.BICEP_FILE_NAME }}.bicep
 
       - name: Create Resource Group
         run: az deployment sub create --name RGAttempt1 --location eastus --template-uri https://github.com/SN705/Create_RG_in_Azure/blob/main/${{ env.BICEP_FILE_NAME }}.json
