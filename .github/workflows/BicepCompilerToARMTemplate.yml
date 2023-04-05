@@ -15,16 +15,23 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Install Bicep
+        run: |
+          sudo apt-get update && sudo apt-get install -y apt-transport-https
+          curl -s https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc.gpg > /dev/null
+          echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/azure-cli.list
+          sudo apt-get update && sudo apt-get install -y azure-cli
+
       - name: Compile Bicep to ARM template (JSON)
         run: |
-          pwd
-          az bicep build --file ${{ env.BICEP_FILE_NAME }}.bicep --outfile ${{ env.BICEP_FILE_NAME }}.json
-          if [ ! -f ${{ env.BICEP_FILE_NAME }}.json ]; then
+          az bicep build --file ${BICEP_FILE_NAME}.bicep --outfile ${BICEP_FILE_NAME}.json
+          if [ ! -f ${BICEP_FILE_NAME}.json ]; then
             echo "Failed to generate JSON file"
             exit 1
           fi
-          pwd
-          
-      - name: Print current directory
-        run: |
-          ls -al
+
+      - name: Commit JSON file
+        uses: EndBug/add-and-commit@v7
+        with:
+          message: "Add generated ARM template JSON file"
+          add: "${BICEP_FILE_NAME}.json"
