@@ -24,6 +24,8 @@ jobs:
           sudo rm -rf ~/.azure
           sudo mkdir ~/.azure
           sudo chmod -R 700 ~/.azure
+          sudo chmod 700 ~/.azure/azureProfile.json
+
 
           
       - name: Create Resource Group
