@@ -11,11 +11,11 @@
   "parameters": {
     "location": {
       "type": "string",
-      "defaultValue": "canadacentral"
+      "defaultValue": "eastus"
     },
     "rgname": {
       "type": "string",
-      "defaultValue": "Dino_Smiles_RGitworks"
+      "defaultValue": "Dino_Smiles_RG122333"
     }
   },
   "resources": [
