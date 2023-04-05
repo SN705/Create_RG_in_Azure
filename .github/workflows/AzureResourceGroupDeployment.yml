@@ -5,12 +5,18 @@ on:
     branches:
       - main
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          path: repo
 
       - name: Install and login to Azure
         uses: azure/CLI@v1
@@ -18,16 +24,7 @@ jobs:
           inlineScript: |
             az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
             az account set --subscription ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-            
-      - name: Set file permissions for Azure CLI
-        run: |
-          sudo rm -rf ~/.azure
-          sudo mkdir ~/.azure
-          sudo chmod -R 700 ~/.azure
-          sudo chmod 700 ~/.azure/azureProfile.json
 
-
-          
       - name: Create Resource Group
         run: az deployment sub create --name RGAttempt1 --location eastus --template-uri https://raw.githubusercontent.com/SN705/Create_RG_in_Azure/main/ResourceGroup.json
 
