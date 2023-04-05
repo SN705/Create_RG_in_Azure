@@ -27,5 +27,5 @@ jobs:
           inlineScript: |
             az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
             az account set --subscription ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-            az deployment sub create --name RGAttempt1 --location eastus --template-uri https://raw.githubusercontent.com/SN705/Create_RG_in_Azure/main/${{ env.JSON_FILE_NAME }}.json
+            az deployment sub create --name RGAttempt2 --location eastus --template-uri https://raw.githubusercontent.com/SN705/Create_RG_in_Azure/main/${{ env.JSON_FILE_NAME }}.json
           
