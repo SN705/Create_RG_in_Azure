@@ -1,4 +1,4 @@
-name: Azure Deployment
+name: Azure Resource Group Subscription-Level Deployment
 
 on:
   push:
