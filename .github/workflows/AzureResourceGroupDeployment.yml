@@ -23,7 +23,7 @@ jobs:
         run: sudo chmod -R 700 /home/runner/.azure
 
       - name: Create Resource Group
-        run: az deployment sub create --name RGAttempt1 --location eastus --template-uri https://raw.githubusercontent.com/SN705/Create_RG_in_Azure/main/ResourceGroup.json
+        run: sudo az deployment sub create --name RGAttempt1 --location eastus --template-uri https://raw.githubusercontent.com/SN705/Create_RG_in_Azure/main/ResourceGroup.json
 
         env:
           AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
