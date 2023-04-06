@@ -15,7 +15,7 @@
     },
     "rgname": {
       "type": "string",
-      "defaultValue": "Dino_Smiles_RG122333"
+      "defaultValue": "Dino_Smiles_SPRINT3DEMO"
     }
   },
   "resources": [
